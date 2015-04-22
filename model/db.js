@@ -1,10 +1,7 @@
 /**
  * Created by Filipovic on 22-04-2015.
  */
-
-
 var mongoose = require('mongoose');
-
 var dbURI;
 
 //This is set by the backend tests
