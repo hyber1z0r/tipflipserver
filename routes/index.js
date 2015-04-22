@@ -8,6 +8,10 @@ router.get('/', function (req, res) {
     res.render('index', {title: 'Express'});
 });
 
+router.post('/savereg', function (req, res) {
+    res.status(200).json({msg: 'success'});
+});
+
 router.post('/send', function (req, res) {
     var data = {};
     data.data = {};
