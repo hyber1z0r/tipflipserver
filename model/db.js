@@ -110,3 +110,9 @@ var RegIDsSchema = new mongoose.Schema ({
     regID : string
 });
 mongoose.model('RegID', RegIDsSchema, "regid");
+
+var CategorySchema = new mongoose.Schema ({
+    category : string
+});
+mongoose.model('Category', CategorySchema, "category")
+
