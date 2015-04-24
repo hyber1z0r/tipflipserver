@@ -120,7 +120,7 @@ var CategorySchema = new Schema({
 mongoose.model('Category', CategorySchema, "category");
 
 var OffersSchema = new Schema({
-    category : {type: ObjID},
+    category : {type: mongoose.Schema.Types.ObjectId},
     discount : {type: String}
 });
 mongoose.model('Offer', OffersSchema, 'offers');
@@ -129,7 +129,7 @@ var ProfileSchema = new Schema({
     name: {type: String},
     regID: {type: String},
     categories: {type: [String]},
-    offers : {type: [ObjID], ref: 'Offer'}
+    offers : {type: [mongoose.Schema.Types.ObjectId], ref: 'Offer'}
 });
 
 mongoose.model('Profile', ProfileSchema, 'profiles');

@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var regid = mongoose.model('RegID');
 var profile = mongoose.model('Profile');
 var offer = mongoose.model('Offer');
+var category = mongoose.model('Category');
 
 /* Saves a regID to the db */
 function saveRegID(id, callback) {
@@ -51,7 +52,7 @@ function getProfilesWithCat(cat, callback) {
  * */
 function getAllOffers(callback) {
     offer.find().populate('category').exec(function (err, offers) {
-        if(err) {
+        if (err) {
             callback(err);
         } else {
             callback(null, offers);
@@ -59,9 +60,32 @@ function getAllOffers(callback) {
     });
 }
 
+function getAllCategories(callback) {
+    category.find({}, function (err, cats) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, cats);
+        }
+    })
+}
+
+// should be changed to username in the future
+function getProfile(name, callback) {
+    profile.findOne({name: {$regex: new RegExp(name, 'i')}}).populate('category').exec(function (err, profile) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, profile);
+        }
+    })
+}
+
 module.exports = {
     saveRegID: saveRegID,
     getRegIDs: getRegIDs,
     getProfilesWithCat: getProfilesWithCat,
-    getAllOffers: getAllOffers
+    getAllOffers: getAllOffers,
+    getAllCats: getAllCategories,
+    getProfile: getProfile
 };

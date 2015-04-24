@@ -73,12 +73,34 @@ router.post('/send', function (req, res) {
 
 router.get('/offers', function (req, res) {
     datalayer.getAllOffers(function (err, offers) {
-        if(err) {
+        if (err) {
             res.status(500).json(err);
         } else {
             res.json(offers);
         }
     })
+});
+
+router.get('/profile', function (req, res) {
+    var name = req.query.name;
+    if (!name) return res.json({error: 'no name'});
+    datalayer.getProfile(name, function (err, profile) {
+        if (err) {
+            res.status(500).json(err);
+        } else {
+            res.json(profile);
+        }
+    });
+});
+
+router.get('/categories', function (req, res) {
+    datalayer.getAllCats(function (err, cats) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(cats);
+        }
+    });
 });
 
 module.exports = router;
