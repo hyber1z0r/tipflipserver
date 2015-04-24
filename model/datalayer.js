@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose');
 var regid = mongoose.model('RegID');
+var profile = mongoose.model('Profile');
 
 /* Saves a regID to the db */
 function saveRegID(id, callback) {
@@ -32,7 +33,19 @@ function getRegIDs(callback) {
     });
 }
 
+function getProfilesWithCat(cat, callback) {
+    profile.find({categories: cat}, function (err, profiles) {
+        if (err) {
+            callback(err)
+        }
+        else {
+            callback(null, profiles);
+        }
+    });
+}
+
 module.exports = {
     saveRegID: saveRegID,
-    getRegIDs: getRegIDs
+    getRegIDs: getRegIDs,
+    getProfilesWithCat: getProfilesWithCat
 };

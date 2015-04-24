@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Jakob",
+    "regID": "APA91bHT5_oYV0Tey0tevrePmdFaw526DoRk4px4U3Dk7ucUlaESTQTQP2fTzqB9_4y8D9KFD5FhY3lrMJ6vpZwn_AeUxM9w1rjzk0TaDqSiXi3B8g23I_65HJOwuvt_zzHEyTf7JELnC3HCT8cOVf7VciSruIIjCA",
+    "categories": [
+      "men",
+      "food"
+    ]
+  },
+  {
+    "name": "Damjan",
+    "regID": "APA91bEhPInt17ywAOkfWDkieyJaPYVMJDYvaDrISM4_F_ZcOpK640umNAnfwosBsKYlg6ywube_Wq6XpNHRSC9y8piVTBp3wKV5FS10KqHoYudi9_UDOSE1FugD7KxaAC1_iHWW9cQ63BlV0sg4QRHOTY_QaIVA6Q",
+    "categories": [
+      "men",
+      "electronic"
+    ]
+  },
+  {
+    "name": "Vuk",
+    "regID": "APA91bGDwdUKop6VZ509HgDa1-e4jxl50FOqLUh5aWajnsVGhzbsipqbFEuoHrVx4ch82pPVS25jep8yx4rc4wW5XNfVbWEsWLV6IiTqq7tZUJqE20W5WRuxmaw-j-NfSgujpq9qOt-RfZiCDc5WYZ64ZQE_D07UmA",
+    "categories": [
+      "food"
+    ]
+  }
+]

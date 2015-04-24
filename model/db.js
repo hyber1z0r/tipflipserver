@@ -107,13 +107,21 @@ process.on('SIGINT', function () {
 //});
 //mongoose.model('Electronic', ElectronicSchema, "electronic");
 
-var RegIDsSchema = new mongoose.Schema ({
-    regID : String
+var RegIDsSchema = new mongoose.Schema({
+    regID: {type: String}
 });
 mongoose.model('RegID', RegIDsSchema, "regid");
 
-var CategorySchema = new mongoose.Schema ({
-    category : String
+var CategorySchema = new mongoose.Schema({
+    category: {type: String}
 });
-mongoose.model('Category', CategorySchema, "category")
+mongoose.model('Category', CategorySchema, "category");
+
+var ProfileSchema = new mongoose.Schema({
+    name: {type: String},
+    regID: {type: String},
+    categories: {type: [String]}
+});
+
+mongoose.model('Profile', ProfileSchema, 'profiles');
 

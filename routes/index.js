@@ -40,11 +40,13 @@ router.post('/send', function (req, res) {
     var bundle = {};
     bundle.data = {};
     // arg checking
-    datalayer.getRegIDs(function (err, ids) {
+    var category = req.body.category;
+
+    datalayer.getProfilesWithCat(category, function (err, profiles) {
         if (err) {
             res.status(500).json({error: 'mongoerr: ' + err});
         } else {
-            var regIDs = ids.map(function (e) {
+            var regIDs = profiles.map(function (e) {
                 return e.regID;
             });
             bundle.registration_ids = regIDs;
