@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var API_KEY = 'AIzaSyCjMpbqlwrlkWg9DCkgulVzlaHOKOlr5Dc';
-var datalayer = require('../server/model/datalayer');
+var datalayer = require('../model/datalayer');
 
 /* GET home page. */
 router.get('/', function (req, res) {
