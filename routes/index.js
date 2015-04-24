@@ -9,6 +9,18 @@ router.get('/', function (req, res) {
     res.render('index', {title: 'Express'});
 });
 
+router.get('/getreg', function (req, res) {
+    datalayer.getRegIDs(function (err, ids) {
+        if (err) res.status(500).json(err);
+        else {
+            var regIDs = ids.map(function (e) {
+                return e.regID;
+            });
+            res.json(regIDs);
+        }
+    })
+});
+
 router.post('/savereg', function (req, res) {
     console.log(req.body);
     if (req.body) {
@@ -32,7 +44,10 @@ router.post('/send', function (req, res) {
         if (err) {
             res.status(500).json({error: 'mongoerr: ' + err});
         } else {
-            bundle.registration_ids = ids;
+            var regIDs = ids.map(function (e) {
+                return e.regID;
+            });
+            bundle.registration_ids = regIDs;
             bundle.data.string = 'this should work'; // this is where the data from the website should be added!
             request.post({
                 url: 'https://android.googleapis.com/gcm/send',
