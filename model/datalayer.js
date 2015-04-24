@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var regid = mongoose.model('RegID');
 var profile = mongoose.model('Profile');
+var offer = mongoose.model('Offer');
 
 /* Saves a regID to the db */
 function saveRegID(id, callback) {
@@ -44,8 +45,23 @@ function getProfilesWithCat(cat, callback) {
     });
 }
 
+/**
+ * Senere hen: sortere efter dato, giv kun 10? nyeste.
+ * category returnere null lige nu.
+ * */
+function getAllOffers(callback) {
+    offer.find().populate('category').exec(function (err, offers) {
+        if(err) {
+            callback(err);
+        } else {
+            callback(null, offers);
+        }
+    });
+}
+
 module.exports = {
     saveRegID: saveRegID,
     getRegIDs: getRegIDs,
-    getProfilesWithCat: getProfilesWithCat
+    getProfilesWithCat: getProfilesWithCat,
+    getAllOffers: getAllOffers
 };

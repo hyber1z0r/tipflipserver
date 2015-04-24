@@ -50,7 +50,7 @@ router.post('/send', function (req, res) {
                 return e.regID;
             });
             bundle.registration_ids = regIDs;
-            bundle.data.string = 'this should work'; // this is where the data from the website should be added!
+            bundle.data.category = category;
             request.post({
                 url: 'https://android.googleapis.com/gcm/send',
                 body: JSON.stringify(bundle),
@@ -69,6 +69,16 @@ router.post('/send', function (req, res) {
             });
         }
     });
+});
+
+router.get('/offers', function (req, res) {
+    datalayer.getAllOffers(function (err, offers) {
+        if(err) {
+            res.status(500).json(err);
+        } else {
+            res.json(offers);
+        }
+    })
 });
 
 module.exports = router;

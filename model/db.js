@@ -3,6 +3,8 @@
  */
 var mongoose = require('mongoose');
 var dbURI;
+var Schema = mongoose.Schema;
+var ObjID = Schema.Types.ObjectId;
 
 //This is set by the backend tests
 if (typeof global.TEST_DATABASE != 'undefined') {
@@ -107,20 +109,27 @@ process.on('SIGINT', function () {
 //});
 //mongoose.model('Electronic', ElectronicSchema, "electronic");
 
-var RegIDsSchema = new mongoose.Schema({
+var RegIDsSchema = new Schema({
     regID: {type: String}
 });
 mongoose.model('RegID', RegIDsSchema, "regid");
 
-var CategorySchema = new mongoose.Schema({
+var CategorySchema = new Schema({
     category: {type: String}
 });
 mongoose.model('Category', CategorySchema, "category");
 
-var ProfileSchema = new mongoose.Schema({
+var OffersSchema = new Schema({
+    category : {type: ObjID},
+    discount : {type: String}
+});
+mongoose.model('Offer', OffersSchema, 'offers');
+
+var ProfileSchema = new Schema({
     name: {type: String},
     regID: {type: String},
-    categories: {type: [String]}
+    categories: {type: [String]},
+    offers : {type: [ObjID], ref: 'Offer'}
 });
 
 mongoose.model('Profile', ProfileSchema, 'profiles');
