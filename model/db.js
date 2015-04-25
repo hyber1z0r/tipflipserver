@@ -128,8 +128,8 @@ mongoose.model('Offer', OffersSchema, 'offers');
 var ProfileSchema = new Schema({
     name: {type: String},
     regID: {type: String},
-    categories: {type: [mongoose.Schema.Types.ObjectId], ref: 'Category'},
-    offers: {type: [mongoose.Schema.Types.ObjectId], ref: 'Offer'}
+    categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
+    offers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Offer'}]
 });
 
 mongoose.model('Profile', ProfileSchema, 'profiles');
