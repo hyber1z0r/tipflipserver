@@ -51,7 +51,7 @@ function getProfilesWithCat(cat, callback) {
  * category returnere null lige nu.
  * */
 function getAllOffers(callback) {
-    offer.find().populate('category').exec(function (err, offers) {
+    offer.find().populate('category.Category').exec(function (err, offers) {
         if (err) {
             callback(err);
         } else {
@@ -72,7 +72,7 @@ function getAllCategories(callback) {
 
 // should be changed to username in the future
 function getProfile(name, callback) {
-    profile.findOne({name: {$regex: new RegExp(name, 'i')}}).populate('category').exec(function (err, profile) {
+    profile.findOne({name: {$regex: new RegExp(name, 'i')}}).populate('categories.category').exec(function (err, profile) {
         if (err) {
             callback(err);
         } else {
