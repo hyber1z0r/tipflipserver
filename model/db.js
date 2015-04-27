@@ -115,7 +115,8 @@ var RegIDsSchema = new Schema({
 mongoose.model('RegID', RegIDsSchema, "regid");
 
 var CategorySchema = new Schema({
-    category: {type: String}
+    category: {type: String, required: 'Category name required!'},
+    image: {type: String} // base64
 });
 mongoose.model('Category', CategorySchema, "category");
 
