@@ -36,12 +36,18 @@ function getRegIDs(callback) {
 }
 
 function getProfilesWithCat(cat, callback) {
-    profile.find({categories: cat}, function (err, profiles) {
+    category.findOne({category: cat}, function (err, category) {
         if (err) {
-            callback(err)
-        }
-        else {
-            callback(null, profiles);
+            callback(err);
+        } else {
+            profile.find({categories: category._id}, function (err, profiles) {
+                if (err) {
+                    callback(err);
+                }
+                else {
+                    callback(null, profiles);
+                }
+            })
         }
     });
 }
