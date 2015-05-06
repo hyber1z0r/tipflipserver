@@ -109,29 +109,38 @@ process.on('SIGINT', function () {
 //});
 //mongoose.model('Electronic', ElectronicSchema, "electronic");
 
-var RegIDsSchema = new Schema({
-    regID: {type: String}
-});
-mongoose.model('RegID', RegIDsSchema, "regid");
+//var RegIDsSchema = new Schema({
+//    regID: {type: String}
+//});
+//mongoose.model('RegID', RegIDsSchema, "regid");
 
 var CategorySchema = new Schema({
-    category: {type: String, required: 'Category name required!'},
+    name: {type: String, required: 'Category name required!'},
     image: {type: String} // base64
 });
-mongoose.model('Category', CategorySchema, "category");
+mongoose.model('Category', CategorySchema, 'category');
+
+var StoreSchema = new Schema({
+    name: {type: String, required: true}
+});
+mongoose.model('Store', StoreSchema, 'stores');
 
 var OffersSchema = new Schema({
     category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
-    discount: {type: String}
+    discount: {type: String, required : 'Discount required'},
+    offer: {type: String, required : 'Offer desc required'},
+    image: {type: String},
+    created: {type: Date, default: Date.now()},
+    expiration: {type: Date, required: 'Expiration date required'},
+    store: {type: mongoose.Schema.Types.ObjectId, ref: 'Store', required: 'Store ref required'}
 });
 mongoose.model('Offer', OffersSchema, 'offers');
 
 var ProfileSchema = new Schema({
     name: {type: String},
-    regID: {type: String},
+    regID: {type: String, required : 'REGID REQUIRED'},
     categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
     offers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Offer'}]
 });
-
 mongoose.model('Profile', ProfileSchema, 'profiles');
 

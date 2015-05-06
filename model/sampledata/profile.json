@@ -3,26 +3,34 @@
     "name": "Jakob",
     "regID": "APA91bHT5_oYV0Tey0tevrePmdFaw526DoRk4px4U3Dk7ucUlaESTQTQP2fTzqB9_4y8D9KFD5FhY3lrMJ6vpZwn_AeUxM9w1rjzk0TaDqSiXi3B8g23I_65HJOwuvt_zzHEyTf7JELnC3HCT8cOVf7VciSruIIjCA",
     "categories": [
-      "men",
-      "food"
+      "5549ca096f752eb3079a91e6",
+      "5549ca096f752eb3079a91e7"
+    ],
+    "offers": [
+      "5549ce3c7c31cd0008ccc174",
+      "5549ce3c7c31cd0008ccc173",
+      "5549ce3c7c31cd0008ccc175"
     ]
   },
   {
     "name": "Damjan",
     "regID": "APA91bEhPInt17ywAOkfWDkieyJaPYVMJDYvaDrISM4_F_ZcOpK640umNAnfwosBsKYlg6ywube_Wq6XpNHRSC9y8piVTBp3wKV5FS10KqHoYudi9_UDOSE1FugD7KxaAC1_iHWW9cQ63BlV0sg4QRHOTY_QaIVA6Q",
     "categories": [
-      "men",
-      "electronic"
+      "5549ca096f752eb3079a91e8",
+      "5549ca096f752eb3079a91e9"
+    ],
+    "offers": [
+      "5549ce3c7c31cd0008ccc176"
     ]
   },
   {
     "name": "Vuk",
     "regID": "APA91bGDwdUKop6VZ509HgDa1-e4jxl50FOqLUh5aWajnsVGhzbsipqbFEuoHrVx4ch82pPVS25jep8yx4rc4wW5XNfVbWEsWLV6IiTqq7tZUJqE20W5WRuxmaw-j-NfSgujpq9qOt-RfZiCDc5WYZ64ZQE_D07UmA",
     "categories": [
-      "food"
+      "5549ca096f752eb3079a91ea"
     ],
-    "offers" : [
-      "553a255a0f8868fe105ddd41"
+    "offers": [
+      "5549ce3c7c31cd0008ccc177"
     ]
   }
 ]

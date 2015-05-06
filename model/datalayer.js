@@ -2,41 +2,41 @@
  * Created by Filipovic on 22-04-2015.
  */
 var mongoose = require('mongoose');
-var regid = mongoose.model('RegID');
 var profile = mongoose.model('Profile');
 var offer = mongoose.model('Offer');
 var category = mongoose.model('Category');
 
 /* Saves a regID to the db */
 function saveRegID(id, callback) {
-    var regID = new regid({
-        regID: id
+    var profile = new profile({
+        regID: id,
+        categories: [],
+        offers: []
     });
-
-    regID.save(function (err) {
+    profile.save(function (err, profile) {
         if (err) {
             callback(err);
         } else {
-            callback(null, regID);
+            callback(null, profile);
         }
     });
 }
 
-/* Gets all RegIDs */
-function getRegIDs(callback) {
-    regid.find({}, function (err, ids) {
-        if (err) {
-            console.log(err);
-            callback(err);
-        }
-        else {
-            callback(null, ids);
-        }
-    });
-}
+///* Gets all RegIDs */
+//function getRegIDs(callback) {
+//    regid.find({}, function (err, ids) {
+//        if (err) {
+//            console.log(err);
+//            callback(err);
+//        }
+//        else {
+//            callback(null, ids);
+//        }
+//    });
+//}
 
 function getProfilesWithCat(cat, callback) {
-    category.findOne({category: cat}, function (err, category) {
+    category.findOne({name: cat}, function (err, category) {
         if (err) {
             callback(err);
         } else {
@@ -47,17 +47,16 @@ function getProfilesWithCat(cat, callback) {
                 else {
                     callback(null, profiles);
                 }
-            })
+            });
         }
     });
 }
 
 /**
  * Senere hen: sortere efter dato, giv kun 10? nyeste.
- * category returnere null lige nu.
  * */
 function getAllOffers(callback) {
-    offer.find().populate('category').exec(function (err, offers) {
+    offer.find().populate('category').populate('store').exec(function (err, offers) {
         if (err) {
             callback(err);
         } else {
@@ -77,8 +76,8 @@ function getAllCategories(callback) {
 }
 
 // should be changed to username in the future
-function getProfile(name, callback) {
-    profile.findOne({name: {$regex: new RegExp(name, 'i')}}).populate('categories').populate('offers').exec(function (err, profile) {
+function getProfile(regid, callback) {
+    profile.findOne({regID: regid}).populate('categories').populate('offers').exec(function (err, profile) {
         if (err) {
             callback(err);
         } else {
@@ -89,7 +88,6 @@ function getProfile(name, callback) {
 
 module.exports = {
     saveRegID: saveRegID,
-    getRegIDs: getRegIDs,
     getProfilesWithCat: getProfilesWithCat,
     getAllOffers: getAllOffers,
     getAllCats: getAllCategories,

@@ -9,17 +9,17 @@ router.get('/', function (req, res) {
     res.render('index', {title: 'Express'});
 });
 
-router.get('/getreg', function (req, res) {
-    datalayer.getRegIDs(function (err, ids) {
-        if (err) res.status(500).json(err);
-        else {
-            var regIDs = ids.map(function (e) {
-                return e.regID;
-            });
-            res.json(regIDs);
-        }
-    })
-});
+//router.get('/getreg', function (req, res) {
+//    datalayer.getRegIDs(function (err, ids) {
+//        if (err) res.status(500).json(err);
+//        else {
+//            var regIDs = ids.map(function (e) {
+//                return e.regID;
+//            });
+//            res.json(regIDs);
+//        }
+//    })
+//});
 
 router.post('/savereg', function (req, res) {
     console.log(req.body);
@@ -35,7 +35,6 @@ router.post('/savereg', function (req, res) {
         res.status(403).json({error: 'no reg id supplied'})
     }
 });
-// bundle.registration_ids = ['APA91bFAlaq7_QrGSoNG6v5FscQ3OkF-5ajP_o35vrYApqgeu1gegeTLXPKxxSk1h_kxSgahHuHg6IQYovwaHzejrjEEc9WP1JuoxkQj7I8Wf0rJX_cEn8g6LdrqYaFrEh7WODfkeLr0BBaxosHC7hWhLKvLX3AMKQ'];
 router.post('/send', function (req, res) {
     var bundle = {};
     bundle.data = {};
@@ -82,13 +81,17 @@ router.get('/offers', function (req, res) {
 });
 
 router.get('/profile', function (req, res) {
-    var name = req.query.name;
-    if (!name) return res.json({error: 'no name'});
-    datalayer.getProfile(name, function (err, profile) {
+    var regID = req.query.regid;
+    if (!regID) return res.json({error: 'no regid'});
+    datalayer.getProfile(regID, function (err, profile) {
         if (err) {
             res.status(500).json(err);
         } else {
-            res.json(profile);
+            if (profile) {
+                res.json(profile);
+            } else {
+                res.status(404).json({error: 'profile with regid: ' + regID + ' not found'});
+            }
         }
     });
 });

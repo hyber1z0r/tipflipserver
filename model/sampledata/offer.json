@@ -1,10 +1,37 @@
 [
   {
-    "category" : "5539f31157a8c1f30a32f6f7",
-    "discount" : "20%"
+    "category": "5549ca096f752eb3079a91e6",
+    "discount": "20%",
+    "offer": "iPhone",
+    "expiration": "2015-05-06T20:00:00-00:00",
+    "store": "5549c999420506a207c71b8c"
   },
   {
-    "category" : "5539f31157a8c1f30a32f6f8",
-    "discount" : "10%"
+    "category": "5549ca096f752eb3079a91e6",
+    "discount": "10%",
+    "offer": "Samsung TV",
+    "expiration": "2015-05-06T21:00:00-00:00",
+    "store": "5549c999420506a207c71b8d"
+  },
+  {
+    "category": "5549ca096f752eb3079a91e7",
+    "discount": "25%",
+    "offer": "1 million til mænd og kvinder",
+    "expiration": "2015-05-08T20:00:00-00:00",
+    "store": "5549c999420506a207c71b8b"
+  },
+  {
+    "category": "5549ca096f752eb3079a91e9",
+    "discount": "10%",
+    "offer": "Skovmandsskjorter",
+    "expiration": "2016-05-06T20:00:00-00:00",
+    "store": "5549c999420506a207c71b91"
+  },
+  {
+    "category": "5549ca096f752eb3079a91ea",
+    "discount": "15%",
+    "offer": "BH'er cup D-F",
+    "expiration": "2015-05-06T20:00:00-00:00",
+    "store": "5549c999420506a207c71b91"
   }
 ]
