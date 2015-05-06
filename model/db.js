@@ -121,7 +121,8 @@ var CategorySchema = new Schema({
 mongoose.model('Category', CategorySchema, 'category');
 
 var StoreSchema = new Schema({
-    name: {type: String, required: true}
+    name: {type: String, required: true},
+    image: {type: String}
 });
 mongoose.model('Store', StoreSchema, 'stores');
 
