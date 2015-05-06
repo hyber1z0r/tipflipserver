@@ -77,11 +77,17 @@ function getAllCategories(callback) {
 
 // should be changed to username in the future
 function getProfile(regid, callback) {
-    profile.findOne({regID: regid}).populate('categories').populate('offers').exec(function (err, profile) {
+    profile.findOne({regID: regid}).populate('categories offers').exec(function (err, profile) {
         if (err) {
             callback(err);
         } else {
-            callback(null, profile);
+            category.populate(profile, 'offers.category', function (err, results) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(null, results);
+                }
+            })
         }
     })
 }
