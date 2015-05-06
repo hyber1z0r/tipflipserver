@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var profile = mongoose.model('Profile');
 var offer = mongoose.model('Offer');
 var category = mongoose.model('Category');
+var store = mongoose.model('Store');
 
 /* Saves a regID to the db */
 function saveRegID(id, callback) {
@@ -76,6 +77,7 @@ function getAllCategories(callback) {
 }
 
 // should be changed to username in the future
+// deep populate because of gson parse error. we must populate all fields/objects for it to work.
 function getProfile(regid, callback) {
     profile.findOne({regID: regid}).populate('categories offers').exec(function (err, profile) {
         if (err) {
@@ -85,7 +87,13 @@ function getProfile(regid, callback) {
                 if (err) {
                     callback(err);
                 } else {
-                    callback(null, results);
+                    store.populate(profile, 'offers.store', function (err, endresults) {
+                        if(err) {
+                            callback(err);
+                        } else {
+                            callback(null, endresults);
+                        }
+                    });
                 }
             })
         }
