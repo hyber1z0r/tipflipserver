@@ -43,7 +43,7 @@ router.post('/send', function (req, res) {
 
     datalayer.getProfilesWithCat(category, function (err, profiles) {
         if (err) {
-            res.status(500).json({error: 'mongoerr: ' + err});
+            res.status(err.status || 500).json(err.message || {error: 'mongoerr: ' + err});
         } else {
             var regIDs = profiles.map(function (e) {
                 return e.regID;

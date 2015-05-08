@@ -41,14 +41,21 @@ function getProfilesWithCat(cat, callback) {
         if (err) {
             callback(err);
         } else {
-            profile.find({categories: category._id}, function (err, profiles) {
-                if (err) {
-                    callback(err);
-                }
-                else {
-                    callback(null, profiles);
-                }
-            });
+            if (!category) {
+                var e = new Error();
+                e.status = 404;
+                e.message = 'No such category';
+                callback(e);
+            } else {
+                profile.find({categories: category._id}, function (err, profiles) {
+                    if (err) {
+                        callback(err);
+                    }
+                    else {
+                        callback(null, profiles);
+                    }
+                });
+            }
         }
     });
 }
@@ -88,7 +95,7 @@ function getProfile(regid, callback) {
                     callback(err);
                 } else {
                     store.populate(profile, 'offers.store', function (err, endresults) {
-                        if(err) {
+                        if (err) {
                             callback(err);
                         } else {
                             callback(null, endresults);
