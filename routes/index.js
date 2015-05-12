@@ -83,16 +83,16 @@ router.get('/offers', function (req, res) {
 router.get('/profile', function (req, res) {
     var regID = req.query.regid;
     if (!regID) return res.json({error: 'no regid'});
-    datalayer.getProfile(regID, function (err, profile) {
-        if (err) {
-            res.status(500).json(err);
-        } else {
-            if (profile) {
-                res.json(profile);
+        datalayer.getProfile(regID, function (err, profile) {
+            if (err) {
+                res.status(500).json(err);
             } else {
-                res.status(404).json({error: 'profile with regid: ' + regID + ' not found'});
+                if (profile) {
+                    res.json(profile);
+                } else {
+                    res.status(404).json({error: 'profile with regid: ' + regID + ' not found'});
+                }
             }
-        }
     });
 });
 
