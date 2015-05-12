@@ -100,7 +100,7 @@ router.put('/profile', function (req, res) {
     var profile = req.body;
     datalayer.updateProfile(profile, function (err, data) {
         if(err) {
-            console.log(err);
+            console.log('There was an error: ' + err);
             res.status(err.status || 500).json(err);
         } else {
             res.json({message: 'success'});
