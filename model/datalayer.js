@@ -107,9 +107,9 @@ function getProfile(regid, callback) {
     })
 }
 
-function updateProfile(profile, callback) {
-    var query = {'_id': profile._id};
-    var update = {categories: profile.categories};
+function updateProfile(prof, callback) {
+    var query = {'_id': prof._id};
+    var update = {categories: prof.categories};
     var options = {new: true, upsert: false}; // returns the updated instead of the original
     profile.findOneAndUpdate(query, update, options, function (err, updatedProfile) {
         if (err) {
