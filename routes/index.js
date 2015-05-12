@@ -98,6 +98,7 @@ router.get('/profile', function (req, res) {
 
 router.put('/profile', function (req, res) {
     var profile = req.body;
+    console.log('PROFILE OBJ ID: ' + profile._id);
     datalayer.updateProfile(profile, function (err, data) {
         if(err) {
             console.log('There was an error: ' + err);
