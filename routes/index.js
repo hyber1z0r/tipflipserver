@@ -96,6 +96,10 @@ router.get('/profile', function (req, res) {
     });
 });
 
+router.put('/profile', function (req, res) {
+    res.json(req.body);
+});
+
 router.get('/categories', function (req, res) {
     datalayer.getAllCats(function (err, cats) {
         if (err) {
