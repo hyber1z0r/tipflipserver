@@ -35,6 +35,7 @@ router.post('/savereg', function (req, res) {
         res.status(403).json({error: 'no reg id supplied'})
     }
 });
+
 router.post('/send', function (req, res) {
     var bundle = {};
     bundle.data = {};
@@ -45,10 +46,9 @@ router.post('/send', function (req, res) {
         if (err) {
             res.status(err.status || 500).json(err.message || {error: 'mongoerr: ' + err});
         } else {
-            var regIDs = profiles.map(function (e) {
+            bundle.registration_ids = profiles.map(function (e) {
                 return e.regID;
             });
-            bundle.registration_ids = regIDs;
             bundle.data.category = category;
             request.post({
                 url: 'https://android.googleapis.com/gcm/send',
