@@ -107,10 +107,24 @@ function getProfile(regid, callback) {
     })
 }
 
+function updateProfile(profile, callback) {
+    var query = {"_id": profile._id};
+    var update = {categories: profile.categories};
+    var options = {new: false};
+    profile.findOneAndUpdate(query, update, options, function (err, updatedProfile) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, updatedProfile);
+        }
+    });
+}
+
 module.exports = {
     saveRegID: saveRegID,
     getProfilesWithCat: getProfilesWithCat,
     getAllOffers: getAllOffers,
     getAllCats: getAllCategories,
-    getProfile: getProfile
+    getProfile: getProfile,
+    updateProfile: updateProfile
 };

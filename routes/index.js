@@ -97,8 +97,14 @@ router.get('/profile', function (req, res) {
 });
 
 router.put('/profile', function (req, res) {
-    console.log(req.body);
-    res.json(req.body);
+    var profile = req.body;
+    datalayer.updateProfile(profile, function (err, data) {
+        if(err) {
+            res.status(err.status || 500).json(err);
+        } else {
+            res.json({message: 'success'});
+        }
+    });
 });
 
 router.get('/categories', function (req, res) {
