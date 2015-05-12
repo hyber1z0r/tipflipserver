@@ -51,7 +51,12 @@ function getProfilesWithCat(cat, callback) {
                     if (err) {
                         callback(err);
                     }
-                    else {
+                    else if (profiles.length == 0) {
+                        var error = new Error();
+                        error.status = 404;
+                        error.message = 'No profiles subscribes to this category';
+                        callback(error);
+                    } else {
                         callback(null, profiles);
                     }
                 });
