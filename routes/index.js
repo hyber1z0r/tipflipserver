@@ -97,6 +97,7 @@ router.get('/profile', function (req, res) {
 });
 
 router.put('/profile', function (req, res) {
+    console.log(req.body);
     res.json(req.body);
 });
 
