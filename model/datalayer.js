@@ -9,16 +9,16 @@ var store = mongoose.model('Store');
 
 /* Saves a regID to the db */
 function saveRegID(id, callback) {
-    var profile = new profile({
+    var p = new profile({
         regID: id,
         categories: [],
         offers: []
     });
-    profile.save(function (err, profile) {
+    p.save(function (err, data) {
         if (err) {
             callback(err);
         } else {
-            callback(null, profile);
+            callback(null, data);
         }
     });
 }
