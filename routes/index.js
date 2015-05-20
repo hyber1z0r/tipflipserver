@@ -70,6 +70,10 @@ router.post('/send', function (req, res) {
     });
 });
 
+router.get('/ping', function (req, res) {
+    res.json({'message': 'hello'});
+});
+
 router.get('/offers', function (req, res) {
     datalayer.getAllOffers(function (err, offers) {
         if (err) {
@@ -83,16 +87,16 @@ router.get('/offers', function (req, res) {
 router.get('/profile', function (req, res) {
     var regID = req.query.regid;
     if (!regID) return res.json({error: 'no regid'});
-        datalayer.getProfile(regID, function (err, profile) {
-            if (err) {
-                res.status(500).json(err);
+    datalayer.getProfile(regID, function (err, profile) {
+        if (err) {
+            res.status(500).json(err);
+        } else {
+            if (profile) {
+                res.json(profile);
             } else {
-                if (profile) {
-                    res.json(profile);
-                } else {
-                    res.status(404).json({error: 'profile with regid: ' + regID + ' not found'});
-                }
+                res.status(404).json({error: 'profile with regid: ' + regID + ' not found'});
             }
+        }
     });
 });
 
@@ -100,7 +104,7 @@ router.put('/profile', function (req, res) {
     var profile = req.body;
     console.log('PROFILE OBJ ID: ' + profile._id);
     datalayer.updateProfile(profile, function (err, data) {
-        if(err) {
+        if (err) {
             console.log('There was an error: ' + err);
             res.status(err.status || 500).json(err);
         } else {
